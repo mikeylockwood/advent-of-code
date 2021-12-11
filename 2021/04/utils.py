@@ -27,10 +27,12 @@ def get_bingo_cards(data):
 
 def find_num(num, card):
     for y, row in enumerate(card):
-        if num in row:
-            x = row.index(num)
-            row[x] = False
-            return (x, y)
+        if num not in row:
+            continue
+
+        x = row.index(num)
+        row[x] = False
+        return (x, y)
 
 
 def check_win(card, found):
@@ -44,9 +46,4 @@ def check_win(card, found):
 
 
 def get_score(num, card):
-    total = sum(
-        sum(int(col) for col in row)
-        for row in card
-    )
-
-    return total * int(num)
+    return num * sum(sum(row) for row in card)

@@ -1,4 +1,4 @@
-from utils import Submarine, parse_data
+from utils import *
 
 
 class Sub2(Submarine):
@@ -24,6 +24,6 @@ def solve(data):
 
 
 if __name__ == '__main__':
-    data = parse_data()
+    data = get_data()
     result = solve(data)
     print(result)

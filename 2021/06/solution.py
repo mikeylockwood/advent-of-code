@@ -33,3 +33,19 @@ def breed_fish(fish, days):
         new_fish[6] = new_fish[8]
 
     return breed_fish(new_fish, days)
+
+
+def solve_1(data):
+    return breed_fish(data, 80)
+
+
+def solve_2(data):
+    return breed_fish(data, 256)
+
+
+if __name__ == '__main__':
+    data = get_data()
+    print('Solution 1')
+    print(solve_1(data))
+    print('\nSolution 2')
+    print(solve_2(data))

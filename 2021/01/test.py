@@ -1,6 +1,4 @@
-from solution_1 import solve as solve_1
-from solution_2 import solve as solve_2
-from utils import parse
+from solution import parse, solve_1, solve_2
 
 TEST_DATA = """
 199

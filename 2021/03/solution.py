@@ -1,4 +1,32 @@
-from utils import *
+from pathlib import Path
+
+
+def parse(data):
+    return data.strip().split('\n')
+
+def get_data():
+    data_file = Path(__file__).with_name('data.txt')
+
+    with data_file.open('r') as f:
+        data = f.read()
+
+    return parse(data)
+
+
+def compare_bins(data):
+  comparison = [0] * 12
+  for binary in data:
+     for i, bit in enumerate(binary):
+       comparison[i] += int(bit) or -1
+  return comparison
+
+
+def common_bit(bit_counts, idx):
+    return '0' if bit_counts[idx] < 0 else '1'
+
+
+def uncommon_bit(bit_counts, idx):
+    return '1' if bit_counts[idx] < 0 else '0'
 
 
 def filter_bins(data, idx, bit):
@@ -37,7 +65,15 @@ def find_uncommon(data, idx=0):
     return find_uncommon(data, idx + 1)
 
 
-def solve(data):
+def solve_1(data):
+    bit_counts = compare_bins(data)
+    bin_len = len(max(data))
+    most_common = ''.join([common_bit(bit_counts, idx) for idx in range(bin_len)])
+    least_common = ''.join([uncommon_bit(bit_counts, idx) for idx in range(bin_len)])
+    return int(most_common, 2) * int(least_common, 2)
+
+
+def solve_2(data):
     most_common = find_common(data)
     least_common = find_uncommon(data)
     return most_common * least_common
@@ -45,5 +81,7 @@ def solve(data):
 
 if __name__ == '__main__':
     data = get_data()
-    result = solve(data)
-    print(result)
+    print('Solution 1')
+    print(solve_1(data))
+    print('\nSolution 2')
+    print(solve_2(data))

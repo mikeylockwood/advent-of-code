@@ -71,10 +71,6 @@ def solve_1(data):
     return result
 
 
-def check_gear(data, x, y):
-    pass
-
-
 def solve_2(data):
     row_len = sum(len(x) for x in data[0])
     result = 0
